@@ -1,0 +1,42 @@
+/**
+* Container
+*/
+.container{
+    --min-width: 1200px;
+
+    width: min(85%, var(--min-width));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/**
+* Grid
+*/
+$grid-columns-amount: 12;
+
+@for $i from 1 through $grid-columns-amount {
+    .grid {
+        &.columns--#{$i} {
+            grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+        }
+
+        &.rows--#{$i} {
+            grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
+        }
+
+        > .col--#{$i} {
+            grid-column-start: #{$i};
+        }
+
+        > [class*='col--'].expand--#{$i} {
+            grid-column-end: span #{$i};
+        }
+    }
+}
+
+.grid{
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+}

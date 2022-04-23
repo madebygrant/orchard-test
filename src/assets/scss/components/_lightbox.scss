@@ -1,0 +1,47 @@
+/**
+* Lightbox modal
+*/
+
+.lightbox{
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.75);
+    animation: var(--animation-fade-in-short);
+
+    // The container within the lightbox
+    &__inner{
+        height: 80%;
+    }
+
+    // Lightbox imafe
+    &__image{
+        height: 100%;
+
+        img{
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    // When the lightbox is active
+    &--active{
+        display: flex;
+    }
+
+    // When transitioning to be hidden
+    &--transition-hide{
+        animation: fade-out .5s ease-out both;
+    }
+}
+
+// When the lightbox is active, disable brwoser scrollbars
+body.lightbox-is-active{
+    overflow: hidden;
+}

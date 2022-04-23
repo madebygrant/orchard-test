@@ -1,0 +1,30 @@
+/** 
+* Headings
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--weight-base);
+    text-transform: uppercase;
+}
+
+/**
+* Content
+*/
+
+.content{
+    > * + *{
+        margin-top: 1.25rem;
+    }
+
+    strong{
+        font-weight: var(--weight-strong);
+    }
+
+    a{
+        @extend %text-links-default;
+    }
+}

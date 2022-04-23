@@ -1,0 +1,30 @@
+{
+    "name": "static-project",
+    "version": "1.0.0",
+    "devDependencies": {
+        "autoprefixer": "^10.4.4",
+        "browser-sync": "latest",
+        "postcss-sort-media-queries": "^4.2.1",
+        "sass": "^1.50.1",
+        "gulp": "^4.0.2",
+        "gulp-assets": "latest",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-concat": "latest",
+        "gulp-newer": "latest",
+        "gulp-plumber": "^1.2.1",
+        "gulp-postcss": "^9.0.1",
+        "gulp-rename": "^1.4.0",
+        "gulp-sass": "^5.1.0",
+        "gulp-terser": "latest",
+        "rollup": "^2.70.2",
+        "rollup-plugin-terser": "^7.0.2",
+        "@rollup/plugin-node-resolve": "^13.2.1"
+    },
+    "browserslist": [
+        "last 2 major versions",
+        "not dead"
+    ],
+    "scripts": {
+        "webhint": "hint http://localhost:8000 --telemetry=off"
+    }
+}

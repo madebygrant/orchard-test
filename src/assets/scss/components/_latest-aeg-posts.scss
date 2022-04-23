@@ -1,0 +1,166 @@
+/**
+* "All the latest from AEG" section
+*/
+
+.section--latest-aeg{
+
+    // Section main heading
+    .section__heading{
+        font-size: var(--size-xlarge);
+        margin-bottom: pxToRem(60px);
+    }
+
+    // If in view and not already been viwed, in sequence, each post will fade in
+    &.in-view:not(.been-viewed){
+        .post{
+            opacity: 0;
+            animation: var(--animation-fade-in-short);
+
+            // Post #2
+            &--2{
+                animation-delay: .75s;
+            }
+
+            // Post #3
+            &--3{
+                animation-delay: 1.5s;
+            }
+        }
+    }
+    
+    // Posts
+    .post{
+        
+        // Spacing between elements in the posts
+        &__content > * + *{
+            margin-top: 1rem;
+        }
+
+        // Main heading
+        &__heading{
+            text-transform: none;
+            font-weight: var(--weight-strong);
+            font-size: var(--size-medium);
+
+            // Link states
+            &-link{
+               @extend %text-links-default;
+               border-bottom: none;
+            }
+        }
+
+        // Hero image
+        // Red line under the image, will reduce it's width with hover and active states
+        &__hero{
+            position: relative;
+            padding-bottom: 4px;
+            margin-bottom: 1rem;
+
+            // Red line
+            &:after{
+                height: 4px;
+                @extend %red-line;
+            }
+
+            // Hover state
+            &:hover{
+                &:after{
+                    width: 50%;
+                }
+            }
+
+            // Active state
+            &:active, &:focus{
+                &:after{
+                    width: 0%;
+                }
+            }
+
+            &-link{
+                display: block;
+                height: 100%;
+            }
+        }
+
+        // Excerpt
+        &__excerpt{
+            font-size: var(--size-base);
+            line-height: pxToRem(28px);
+            color: var(--color-grey);
+        }
+
+        // "Read more" link
+        // Red line under the link, will reduce it's width with hover and active states
+        &__read-more{
+            display: inline-flex;
+            text-transform: uppercase;
+            font-weight: var(--weight-strong);
+            padding-bottom: .5em;
+            position: relative;
+            color: var(--color-white);
+
+            // Red line
+            &:after{
+                height: 1px;
+                @extend %red-line;
+            }
+
+            // Hover state
+            &:hover{
+                &:after{
+                    width: 50%;
+                }
+            }
+
+            // Active state
+            &:active, &:focus{
+                color: var(--color-red);
+
+                &:after{
+                    width: 0%;
+                }
+            }
+        }
+    }
+
+    // Media Query - Max Width: 960px
+    @include MQWidths(960px){
+
+        .grid.section__inner{
+            grid-template-columns: minmax(0, 1fr) !important;
+        }
+
+        .post{
+            display: grid;
+            grid-template-columns: 200px minmax(0, 1fr);
+            gap: 1.5rem;
+
+            &__hero{
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+
+            &__image{
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        
+    }
+
+    // Media Query - Max Width: 1200px
+    @include MQWidths(640px){
+        .post{
+            grid-template-columns: minmax(0, 1fr);
+
+            &__hero-link{
+                width: 100%;
+            }
+
+            &__image{
+                width: 100%;
+            }
+        }
+    }
+    
+}

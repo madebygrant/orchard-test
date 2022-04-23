@@ -1,0 +1,48 @@
+// Base CSS variables
+:root{
+    --color-noir: #0e1414;
+    --color-grey: #c2c2c2;
+    --color-offwhite: #f0f0f0;
+    --color-white: #fff;
+    --color-red: #cf1430;
+
+    --size-base: #{pxToRem(16px)};
+    --size-medium: #{pxToRem(18px)};
+    --size-large: #{pxToRem(26px)};
+    --size-xlarge: #{pxToRem(42px)};
+
+    --weight-base: 300;
+    --weight-strong: 600;
+
+    --animation-fade-in: fade-in 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    --animation-fade-in-short: fade-in .75s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+// The red line found throught the latest AEG posts section
+%red-line{
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-red);
+    transition: width .35s ease-in-out;
+}
+
+// Default states for text links
+%text-links-default{
+    border-bottom: 1px solid var(--color-white);
+
+    &:link, &:visited{
+        color: var(--color-white);
+    }
+    &:hover{
+        color: var(--color-grey);
+        border-bottom-color: transparent;
+    }
+    &:active, &:focus{
+        color: var(--color-red);
+        border-bottom-color: transparent;
+    }
+}

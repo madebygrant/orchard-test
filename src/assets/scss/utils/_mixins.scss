@@ -1,0 +1,12 @@
+// Media Queries via screen widths
+@mixin MQWidths($max, $min:false) {
+    @if($max != false and $min){
+        @media only screen and (max-width: $max) and (min-width: $min){ @content; }
+    }
+    @else if($max == false and $min){
+        @media only screen and (min-width: $min) { @content; } 
+    }
+    @else{
+        @media only screen and (max-width: $max) { @content; }
+    }
+}
