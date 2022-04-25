@@ -4,6 +4,12 @@
 
 .section--aybn{
 
+    &.in-view:not(.been-viewed){
+        .aybn-gallery__link{
+            animation: var(--animation-reveal);
+        }
+    }
+
     // AYBN Gallery
     .aybn-gallery{
 
@@ -12,9 +18,8 @@
 
         // The main wrapper and link
         &__link{
-            opacity: 0;
-            transform: translate(0,100%);
-            animation: var(--animation-reveal);
+            //opacity: 0;
+            //transform: translate(0,100%);
 
             &--1{
                 grid-column: 1;
