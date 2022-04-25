@@ -12,7 +12,7 @@ Ideally have [NodeJS]('https://nodejs.org') installed.
 
 ## Start
 
-It will run the distributable version of the website.
+It will run the distributable version of the website via Browsersync.
 
 - Locate and access the '_dev' directory in your terminal
 - Use the command: gulp

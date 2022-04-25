@@ -8,7 +8,6 @@ html{
 
 .section{
     box-sizing: content-box;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,6 +22,15 @@ html{
     &.been-viewed{
         opacity: 1;
     }
+
+    // Section heights
+    // The first section factors in the '.page-header' element's height
+    &:first-of-type{
+        min-height: calc(100vh - 80px);
+    }
+    &:not(:first-of-type){
+         min-height: 100vh;
+    } 
 
     // Section main heading
     &__heading{
@@ -44,6 +52,7 @@ html{
 .page-header__heading{
     letter-spacing: .05em;
     padding: 1rem 0;
+    animation: var(--animation-fade-in);
 }
 
 // Page footer

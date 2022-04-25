@@ -39,6 +39,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Anchor Link Click', event.currentTarget);
         })
     };
-    
 
 });
