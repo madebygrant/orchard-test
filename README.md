@@ -10,9 +10,16 @@ Ideally have [NodeJS]('https://nodejs.org') installed.
 - Locate and access the '_dev' directory in your terminal
 - Install the packages via node using the command: npm install
 
-## Start
+## View
 
-It will run the distributable version of the website via Browsersync.
+Methods to view the distributable version of the website.
+
+Method 1: Locally
+
+- Locate and access the 'dist' directory
+- Open the index.html file in your browser
+
+Method 2: Via Browsersync.
 
 - Locate and access the '_dev' directory in your terminal
 - Use the command: gulp
