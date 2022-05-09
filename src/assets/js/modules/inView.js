@@ -1,21 +1,19 @@
-import { selectAll } from "./selectors";
 /**
- * Detect if the section is wihin the browser viewport
+ * Detect if the elements are wihin the browser viewport
  * 
+ * @param {nodelist} elements The elements to observe
  * @returns void
  */
-
-const sectionInView = () => {
+const inView = (elements) => {
     const config = { root: null, threshold: 0.3 };
-    const sections = selectAll('.section');
 
-    if (!sections) {
+    if (!elements) {
         return false;
     }
 
     // Add an identifier to each section
-    sections.forEach((section, index) => {
-        section.setAttribute('data-section', index);
+    elements.forEach((element, index) => {
+        element.setAttribute('data-inview-item', index);
     });
 
     const callback = (entries) => {
@@ -23,26 +21,26 @@ const sectionInView = () => {
         entries.forEach((entry) => {
 
             if (entry.isIntersecting) {
-                const inViewSection = entry.target;
+                const inViewEntry = entry.target;
 
                 // Get the delay value (ms) before being classified as been viewed
-                const getViewedDelay = +inViewSection.getAttribute('data-viewed-delay');
+                const getViewedDelay = +inViewEntry.getAttribute('data-viewed-delay');
                 const viewedDelay = getViewedDelay !== 0 && getViewedDelay !== NaN ? getViewedDelay : 500;
 
                 // Add 'data-section-inview' attribute to the body tag, indicating which section is in view
-                document.body.setAttribute('data-section-inview', inViewSection.getAttribute('data-section'));
+                document.body.setAttribute('data-section-inview', inViewEntry.getAttribute('data-inview-item'));
 
                 // Clear and add class to the active section in view
-                sections.forEach((section) => {
-                    section.classList.remove('in-view');
+                elements.forEach((element) => {
+                    element.classList.remove('in-view');
                 });
 
                 // When in view
-                inViewSection.classList.add('in-view');
+                inViewEntry.classList.add('in-view');
 
                 // Add a class to indicate the section has been viewed
                 setTimeout(() => {
-                    inViewSection.classList.add('been-viewed');
+                    inViewEntry.classList.add('been-viewed');
                 }, viewedDelay)
             }
 
@@ -52,10 +50,10 @@ const sectionInView = () => {
 
     // Observe the sections
     const observer = new IntersectionObserver(callback, config);
-    selectAll('.section').forEach((section) => {
-        observer.observe(section);
+    elements.forEach((element) => {
+        observer.observe(element);
     });
 
 }
 
-export default sectionInView;
+export default inView;

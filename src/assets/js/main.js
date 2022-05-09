@@ -1,6 +1,6 @@
 import { select, selectAll } from './modules/selectors';
 import lightboxHandlers from './modules/lightboxHandlers';
-import sectionInView from './modules/sectionInView';
+import inView from './modules/inView';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Detect which section is in the browser viewport
      */
 
-    sectionInView();
+    inView(selectAll('.section'));
     
     /**
      * 'Answer your body's needs' gallery & lightbox modal
@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hides the lightbox when it's been clicked on
     select(".lightbox").addEventListener('click', () => {
-        lightboxHandlers.hide();
+        if (document.body.classList.contains('lightbox-is-active')){
+            lightboxHandlers.hide();
+        }
     })
 
     /**

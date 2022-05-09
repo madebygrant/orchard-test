@@ -48,6 +48,9 @@ const lightboxHandlers = {
             const galleryItemImage = select('img', galleryItem);
             const lightbox = select('.lightbox');
             const lightboxInner = select('.lightbox__inner', lightbox);
+
+            // Add the 'active' class to the gallery item
+            galleryItem.classList.add('lightbox-ready--active');
             
             // Create the lightbox image element
             let lightboxFigure = document.createElement('figure');
@@ -60,9 +63,12 @@ const lightboxHandlers = {
             document.body.classList.add('lightbox-is-active'); // Add a class to the <body> tag when the lightbox modal is active
             lightboxInner.innerHTML = ""; // Clear the lightbox
             lightboxInner.append(lightboxFigure); // Append the image into the lightbox
-            lightbox.classList.add('lightbox--active'); // Add class to indicate the lightbox is active
+            lightbox.classList.add('lightbox--active', 'lightbox--transition-appear'); // Add classes to indicate the lightbox is active and in transition
             ariaHiddenToggle(); // Accessibility, toggle the aria-hidden attribute values of elements assigned with it
 
+            setTimeout(() => {
+                lightbox.classList.remove('lightbox--transition-appear'); // Remove the transition class after the length of the transition
+            }, 750)
         });
     },
 
@@ -74,13 +80,17 @@ const lightboxHandlers = {
     hide: () => {
         const lightbox = select('.lightbox');
 
-        lightbox.classList.add('lightbox--transition-hide'); // Apply transition class
-        ariaHiddenToggle(); // Accessibility, toggle the aria-hidden attribute values of elements assigned with it
+        if (!lightbox.classList.contains('lightbox--transition-appear') ){
 
-        setTimeout(() => {
-            document.body.classList.remove('lightbox-is-active'); // Remove the class to the <body> tag when the lightbox modal isn't active
-            lightbox.classList.remove('lightbox--active', 'lightbox--transition-hide'); // remove the classes applied previously
-        }, 1000)
+            lightbox.classList.add('lightbox--transition-hide'); // Apply transition class
+            ariaHiddenToggle(); // Accessibility, toggle the aria-hidden attribute values of elements assigned with it
+
+            setTimeout(() => {
+                document.body.classList.remove('lightbox-is-active'); // Remove the class to the <body> tag when the lightbox modal isn't active
+                lightbox.classList.remove('lightbox--active', 'lightbox--transition-hide'); // Remove the classes applied previously
+                select('.lightbox-ready--active').classList.remove('lightbox-ready--active'); // Remove 'active' class from the gallery item
+            }, 500)
+        }
         
     }
 }
